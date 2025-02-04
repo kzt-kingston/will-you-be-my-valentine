@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
+import dynamic from "next/dynamic";
+
+// Dynamically import the Player component with SSR disabled
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false }
+);
 
 export default function ValentinePage() {
   const [noClickCount, setNoClickCount] = useState(0);
